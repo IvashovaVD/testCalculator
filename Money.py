@@ -69,29 +69,27 @@ class Record:
 
 class CaloriesCalculator(Calculator):
 
-    def get_calories_remained(calories_remained,limitt):
-
-        if calories_remained < limitt:
+    def get_calories_remained(self):
+        calories_remained = self.get_today_limit_balance()
+        if calories_remained > 0:
             message = (f'Сегодня можно съесть что-нибудь ещё, но с общей '
-                       f'калорийностью не более {limitt-calories_remained} кКал')
+                       f'калорийностью не более {calories_remained} кКал')
         else:
             message = 'Хватит есть!'
         return message
 
 
 if __name__ == '__main__':
-    limmit=150
-    cash_calculator = CashCalculator(limmit)
+     limit = 150
+    cash_calculator = CashCalculator(limit)
     cash_calculator.add_record(Record(amount=3, comment="кофе"))
+    cash_calculator.add_record(Record(amount=13, comment="к чаю"))
+    cash_calculator.add_record(Record(amount=30, comment="пирог"))
     print(cash_calculator.get_today_cash_remained("rub"))
     print(cash_calculator.get_today_cash_remained("usd"))
     print(cash_calculator.get_today_cash_remained("eur"))
-    print(CaloriesCalculator.get_calories_remained(10, limmit))
-
+  
     
-    
-    
-#На сегодня осталось 5.0 руб
-#На сегодня осталось 0.07 USD
-#На сегодня осталось 0.06 Euro
-#Сегодня можно съесть что-нибудь ещё, но с общей калорийностью не более 140 кКал
+#На сегодня осталось 104.0 руб
+#На сегодня осталось 1.49 USD
+#На сегодня осталось 1.35 Euro
