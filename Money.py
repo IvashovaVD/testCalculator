@@ -71,7 +71,11 @@ if __name__ == '__main__':
     cash_calculator = CashCalculator(150)
     cash_calculator.add_record(Record(amount=145, comment="кофе"))
     print(cash_calculator.get_today_cash_remained("rub"))
+    print(cash_calculator.get_today_cash_remained("usd"))
+    print(cash_calculator.get_today_cash_remained("eur"))
     
     
     
- #На сегодня осталось 5.0 руб
+#На сегодня осталось 5.0 руб
+#На сегодня осталось 0.07 USD
+#На сегодня осталось 0.06 Euro
