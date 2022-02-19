@@ -67,15 +67,31 @@ class Record:
             self.date = dt.datetime.strptime(date, '%d.%m.%Y').date()
 
 
+class CaloriesCalculator(Calculator):
+
+    def get_calories_remained(calories_remained,limitt):
+
+        if calories_remained < limitt:
+            message = (f'Сегодня можно съесть что-нибудь ещё, но с общей '
+                       f'калорийностью не более {limitt-calories_remained} кКал')
+        else:
+            message = 'Хватит есть!'
+        return message
+
+
 if __name__ == '__main__':
-    cash_calculator = CashCalculator(150)
-    cash_calculator.add_record(Record(amount=145, comment="кофе"))
+    limmit=150
+    cash_calculator = CashCalculator(limmit)
+    cash_calculator.add_record(Record(amount=3, comment="кофе"))
     print(cash_calculator.get_today_cash_remained("rub"))
     print(cash_calculator.get_today_cash_remained("usd"))
     print(cash_calculator.get_today_cash_remained("eur"))
+    print(CaloriesCalculator.get_calories_remained(10, limmit))
+
     
     
     
 #На сегодня осталось 5.0 руб
 #На сегодня осталось 0.07 USD
 #На сегодня осталось 0.06 Euro
+#Сегодня можно съесть что-нибудь ещё, но с общей калорийностью не более 140 кКал
